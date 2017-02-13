@@ -1,0 +1,103 @@
+<link href="../css/cook.css" rel="stylesheet" />
+
+<script src="../assets/plugins/pace/pace.min.js"></script>
+
+<ol class="breadcrumb pull-right">
+    <li class="active">Cooker info</li>
+</ol>
+
+<div class="row" ng-controller="CookController" ng-init="viewDetails()">
+    <div class="col-md-10">
+
+        <div class="panel panel-inverse" id="cook_detail_panel">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="result-container">
+                    <h6 class="m-t-10" ng-show="loggedInUser.roleName == 'chief'"><i class="fa fa-cog"></i>&nbsp;&nbsp;.</h6>
+                    <ol class="breadcrumb pull-right pager">
+                        <li class="next" role="button" aria-disabled="false"><a href="javascript:;" ui-sref="home.cook.list"> &rarr;</a></li>
+                    </ol>
+                    <form class="form-horizontal" id="cook_detail_view_form" parsley-validate="true" ng-submit="update()">
+                        <fieldset>
+                            <legend></legend>
+                            <div id="cook_view_panel" ng-show="loggedInUser.roleName != 'chief'">
+                                <div class="form-group width-500">
+                                    <label class="col-md-4 control-label">:</label>
+                                    <div class="col-md-8"><label class="control-label">{{currentCook.realCookAtString}}</label></div>
+                                </div>
+                                <div class="form-group width-500">
+                                    <label class="col-md-4 control-label">:</label>
+                                    <div class="col-md-8"><label class="control-label">{{currentCook.mealCategoryText}}</label></div>
+                                </div>
+                                <div class="form-group width-500">
+                                    <label class="col-md-4 control-label">:</label>
+                                    <div class="col-md-8"><label class="control-label">{{currentCook.categoryText}}</label></div>
+                                </div>
+                                <div class="form-group width-500">
+                                    <label class="col-md-4 control-label">:</label>
+                                    <div class="col-md-8"><label class="control-label">{{currentCook.workers}}</label></div>
+                                </div>
+                            </div>
+
+                            <div id="cook_edit_panel" ng-show="loggedInUser.roleName == 'chief'">
+                                <label class="control-label">:</label>
+                                <div class="m-b-25" placeholder="">
+                                    <ul id="send-to" class="inverse">
+                                    </ul>
+                                </div>
+
+                                <label class="control-label">:</label>
+                                <div class="m-b-25">
+                                    <div class="input-group date" id="cook_date" data-date-format="yyyy-mm-dd" data-date-start-date="Date.default">
+                                        <input type="text" class="form-control" placeholder="." ng-model="cookDate">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+
+                                <label class="control-label">:</label>
+                                <div class="m-b-25">
+                                    <div class="checkbox">
+                                        <label ng-repeat="mealCategory in mealCategories">
+                                            <input type="checkbox" ng-model="mealCategory.checkState"> {{mealCategory.name}} &nbsp; &nbsp; &nbsp;
+                                            </input>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <label class="control-label">type:</label>
+                                <div class="m-b-25">
+                                    <div class="checkbox">
+                                        <label ng-repeat="category in categories">
+                                            <input type="checkbox" ng-model="category.checkState"> {{category.name}} &nbsp; &nbsp; &nbsp;
+                                            </input>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <label class="control-label">:</label>
+                                <div class="m-b-25">
+                                    <textarea class="textarea form-control" id="cookDirections" placeholder=" ..." rows="12" ng-model="cookDirections" data-parsley-required="true"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary p-l-40 p-r-40">&nbsp;&nbsp;</button>
+                                <button type="reset" class="btn btn-default p-l-40 p-r-40" ng-click="cancelCreate()">취&nbsp;&nbsp;소</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    App.init();
+    CookFormPlugins.init();
+</script>

@@ -1,0 +1,41 @@
+{
+    "application" : "Moranbong Server",
+    "port": 8000,
+    "env": "development",
+    "instance": "Server_PC",
+    "parallelProcessing": 5,
+    "domain": "http://192.168.1.10:8000",
+    "websocketsRestartCronTime": "0 */5 * * * *",
+
+    "db": {
+        "connection": "mongodb://192.168.1.10:27017/moranbong_db_dev",
+        "options": {
+        }
+    },
+    "redis": {
+        "port": 6379,
+        "host": "192.168.1.10"
+    },
+    "utilityProvidersGeneralWords": [
+        "company",
+        "inc",
+        "and",
+        "."
+    ],
+    "cookie": {
+        "secure": false
+    },
+    "session": {
+        "key": "mySuperPuperKey",
+        "cookieDomain": ".moranbong.com"
+    },
+    "api": {
+        "host": "api.moranbongbrowser.com",
+        "version": "v1",
+        "secure": true
+    },
+	"assets": {
+        "imageAssetsKeyPrefix": "Images",
+        "userAssetsKeyPrefix": "UserAssets"
+    }
+}

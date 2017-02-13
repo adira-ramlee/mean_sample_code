@@ -1,0 +1,74 @@
+<link href="../css/cook.css" rel="stylesheet" />
+
+<ol class="breadcrumb pull-right">
+    <li class="active">Create new Cooker list</li>
+</ol>
+
+<h1 class="page-header">Create New<small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create new Cooker.</small></h1>
+
+<div class="row" ng-init="initCookParams()" ng-controller="CookController">
+    <div class="col-md-10">
+
+        <div class="panel panel-inverse" id="cook_add_panel">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                </div>
+                <h4 class="panel-title">Create new Cooker</h4>
+            </div>
+
+            <div class="panel-body">
+                <form name="cook_add_form" id="cook_add_form" data-parsley-validate="true" ng-submit="create()">
+                    <label class="control-label">:</label>
+                    <div class="m-b-25" placeholder=" ...">
+                        <ul id="send-to" class="inverse">
+                        </ul>
+                    </div>
+
+                    <label class="control-label">:</label>
+                    <div class="m-b-25">
+                        <div class="input-group date" id="cook_date" data-date-format="yyyy-mm-dd" data-date-start-date="Date.default">
+                            <input type="text" class="form-control" placeholder="." ng-model="cookDate">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+
+                    <label class="control-label">:</label>
+                    <div class="m-b-25">
+                        <div class="checkbox">
+                            <label ng-repeat="mealCategory in mealCategories">
+                                <input type="checkbox" ng-model="mealCategory.checkState"> {{mealCategory.name}} &nbsp; &nbsp; &nbsp;
+                                </input>
+                            </label>
+                        </div>
+                    </div>
+
+                    <label class="control-label">:</label>
+                    <div class="m-b-25">
+                        <div class="checkbox">
+                            <label ng-repeat="category in categories">
+                                <input type="checkbox" ng-model="category.checkState"> {{category.name}} &nbsp; &nbsp; &nbsp;
+                                </input>
+                            </label>
+                        </div>
+                    </div>
+
+                    <label class="control-label">:</label>
+                    <div class="m-b-25">
+                        <textarea class="textarea form-control" id="cookDirections" placeholder=" ..." rows="12" ng-model="cookDirections" data-parsley-required="true"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary p-l-40 p-r-40">작&nbsp;&nbsp;</button>
+                    <button type="reset" class="btn btn-default p-l-40 p-r-40" ng-click="cancelCreate()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    App.init();
+    CookFormPlugins.init();
+</script>
